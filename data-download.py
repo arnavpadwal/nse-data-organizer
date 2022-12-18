@@ -1,3 +1,4 @@
+import jugaad_data.nse as jd
 from datetime import date
 import pandas as pd
 
@@ -9,7 +10,7 @@ end_date = date.today()
 dates = pd.date_range(start_date, end_date)
 for i in dates:
     try:
-        jugaad_data.nse.bhavcopy_save(i, download_path)
+        jd.nse.bhavcopy_save(i, download_path)
     except Exception:
         continue
 
