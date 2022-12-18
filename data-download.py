@@ -13,18 +13,25 @@ start_date = date(2022, 12, 1)
 end_date = date.today()
 holidays = []
 
-
-def daterange(start_date, end_date):
-    for n in range(int((end_date - start_date).days)):
-        yield start_date + timedelta(n)
-
-
-for single_date in daterange(start_date, end_date):
+dates = pd.date_range(start_date, end_date)
+for i in dates:
     try:
-        jugaad_data.nse.bhavcopy_save(single_date, download_path)
+        jugaad_data.nse.bhavcopy_save(i, download_path)
     except Exception:
-        holidays.append(str(single_date))
         continue
+
+
+# def daterange(start_date, end_date):
+#     for n in range(int((end_date - start_date).days)):
+#         yield start_date + timedelta(n)
+
+
+# for single_date in daterange(start_date, end_date):
+#     try:
+#         jugaad_data.nse.bhavcopy_save(single_date, download_path)
+#     except Exception:
+#         holidays.append(str(single_date))
+#         continue
 
 
 """
